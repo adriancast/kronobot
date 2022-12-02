@@ -1,0 +1,2 @@
+basic_auth_users:
+       grafana: '$2a$12$NmREXSDw0yf7Fku5Zg3UQO3o4a9j3sgstnpbg/GZzKhSquZeeijdS'

@@ -1,0 +1,85 @@
+version: '3.7'
+
+services:
+  web:
+    image: adriancast/kronobot:latest
+    command: gunicorn kronobot.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/mediafiles
+    expose:
+      - 8000
+    env_file:
+      - .env.prod
+    environment:
+      - 'VIRTUAL_HOST=kronobot.com,www.kronobot.com'
+      - 'VIRTUAL_PORT=8000'
+      - 'LETSENCRYPT_HOST=kronobot.com,www.kronobot.com'
+      - 'LETSENCRYPT_EMAIL=hello@kronobot.com'
+    depends_on:
+      - db
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - kronobot_postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - .env.prod.db
+  nginx-proxy:
+    container_name: nginx-proxy
+    image: adriancast/kronobot-nginx:latest
+    restart: always
+    ports:
+      - 443:443
+      - 80:80
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/mediafiles
+      - certs:/etc/nginx/certs
+      - html:/usr/share/nginx/html
+      - vhost:/etc/nginx/vhost.d
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    depends_on:
+      - web
+  nginx-proxy-letsencrypt:
+    image: nginxproxy/acme-companion:2.2
+    env_file:
+      - .env.prod.proxy-companion
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - certs:/etc/nginx/certs
+      - html:/usr/share/nginx/html
+      - vhost:/etc/nginx/vhost.d
+      - acme:/etc/acme.sh
+    depends_on:
+      - nginx-proxy
+
+  prometheus:
+    image: adriancast/kronobot-prometheus:latest
+    restart: always
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.enable-lifecycle'
+      - '--web.config.file=/etc/prometheus/web.yml'
+    ports:
+      - 9090:9090
+    environment:
+      - 'VIRTUAL_HOST=prometheus.kronobot.com'
+      - 'VIRTUAL_PORT=9090'
+      - 'LETSENCRYPT_HOST=prometheus.kronobot.com'
+      - 'LETSENCRYPT_EMAIL=hello@kronobot.com'
+
+volumes:
+  acme:
+    external: true
+  kronobot_postgres_data:
+    external: true
+  static_volume:
+    external: true
+  media_volume:
+    external: true
+  certs:
+    external: true
+  html:
+    external: true
+  vhost:
+    external: true

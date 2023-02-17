@@ -373,16 +373,15 @@
                   <h2>Rallyes</h2>
                 </div>
               </div>
-              <div id="discover-swiper3" class="swiper-container">
+              <div id="discover-swiper2" class="swiper-container">
                 <div class="swiper-wrapper">
-                  {% for rally in rallyes %}
+                  {% for event in rallyes %}
                   <div class="swiper-slide">
-                    <a href="{{rally.id}}" data-href="/single/">
+                    <a href="{{event.id}}" data-href="/single/">
                       <div class="card medium">
-                        <img class="card-image" src="{{rally.img}}" alt="">
+                        <img class="card-image" src="{{event.img}}" alt="">
                         <div class="card-infos">
-                          <div class="card-date"><i class="f7-icons">clock</i></i>2 days ago</div>
-                          <h2 class="card-title">{{rally.name}}</h2>
+                          <h2 class="card-title">{{event.name}}</h2>
                         </div>
                       </div>
                     </a>
@@ -392,75 +391,102 @@
                   
                 
                 </div>
-                
-        
-                <div class="block">
-                  <div class="title-medium-container">
-                         <h2>Pujades</h2>
-                       </div>
-                     </div>
-                     
-                     <div class="swiper-wrapper">
-                      {% for pujada in pujades %}
-                      <div class="swiper-slide">
-                         <a href="{{pujada.id}}" data-href="/single/">
-                          <div class="card medium">
-                            <img class="card-image" src="{{pujada.img}}" alt="">
-                            <div class="card-infos">
-                              <div class="card-date"><i class="f7-icons">clock</i></i>2 days ago</div>
-                              <h2 class="card-title">{{pujada.name}}</h2>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                      {% endfor %}
-                    
-                    </div>
-                    <div class="block">
-                      <div class="title-medium-container">
-                             <h2>Karting</h2>
-                           </div>
-                         </div>
-                         <div class="swiper-wrapper">
-                          {% for karting in karting %}
-                          <div class="swiper-slide">
-                             <a href="{{karting.id}}" data-href="/single/">
-                              <div class="card medium">
-                                <img class="card-image" src="{{karting.img}}" alt="">
-                                <div class="card-infos">
-                                  <div class="card-date"><i class="f7-icons">clock</i></i>2 days ago</div>
-                                  <h2 class="card-title">{{karting.name}}</h2>
-                                </div>
-                              </div>
-                            </a>
-                          </div>
-                          {% endfor %}
-                        
-                        </div>
-                    <div class="block">
-                      <div class="title-medium-container">
-                             <h2>Autocross</h2>
-                           </div>
-                         </div>
-                         <div class="swiper-wrapper">
-                          {% for autocross in autocross %}
-                          <div class="swiper-slide">
-                             <a href="{{autocross.id}}" data-href="/single/">
-                              <div class="card medium">
-                                <img class="card-image" src="{{autocross.img}}" alt="">
-                                <div class="card-infos">
-                                  <div class="card-date"><i class="f7-icons">clock</i></i>2 days ago</div>
-                                  <h2 class="card-title">{{autocross.name}}</h2>
-                                </div>
-                              </div>
-                            </a>
-                          </div>
-                          {% endfor %}
-                        
-                        </div>
+              </div>
 
-                </div>
+
+
+
+
+              <div class="block">
+              
+                <div class="title-medium-container">
+                   <h2>Pujades</h2>
+                 </div>
+               </div>
+               <div id="discover-swiper3" class="swiper-container">
+                 <div class="swiper-wrapper">
+                   {% for event in pujades%}
+                   <div class="swiper-slide">
+                     <a href="{{event.id}}" data-href="/single/">
+                       <div class="card medium">
+                         <img class="card-image" src="{{event.img}}" alt="">
+                         <div class="card-infos">
+                           <h2 class="card-title">{{event.name}}</h2>
+                         </div>
+                       </div>
+                     </a>
+                     
+                   </div>
+                   {% endfor %}
+                   
+                 
+                 </div>
+               </div>
              
+
+
+
+
+
+
+
+
+               <div class="block">
+              
+                <div class="title-medium-container">
+                   <h2>Karting</h2>
+                 </div>
+               </div>
+               <div id="discover-swiper4" class="swiper-container">
+                 <div class="swiper-wrapper">
+                   {% for event in karting %}
+                   <div class="swiper-slide">
+                     <a href="{{event.id}}" data-href="/single/">
+                       <div class="card medium">
+                         <img class="card-image" src="{{event.img}}" alt="">
+                         <div class="card-infos">
+                           <h2 class="card-title">{{event.name}}</h2>
+                         </div>
+                       </div>
+                     </a>
+                     
+                   </div>
+                   {% endfor %}
+                   
+                 
+                 </div>
+               </div>
+
+
+
+
+
+               <div class="block">
+              
+                <div class="title-medium-container">
+                   <h2>Autocross</h2>
+                 </div>
+               </div>
+               <div id="discover-swiper5" class="swiper-container">
+                 <div class="swiper-wrapper">
+                   {% for event in autocross %}
+                   <div class="swiper-slide">
+                     <a href="{{event.id}}" data-href="/single/">
+                       <div class="card medium">
+                         <img class="card-image" src="{{event.img}}" alt="">
+                         <div class="card-infos">
+                           <h2 class="card-title">{{event.name}}</h2>
+                         </div>
+                       </div>
+                     </a>
+                     
+                   </div>
+                   {% endfor %}
+                   
+                 
+                 </div>
+               </div>
+
             </div>
           </div>
         </div>

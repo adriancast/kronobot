@@ -215,8 +215,10 @@ var swiperOptions = {
 
 // Create the Discover tab sliders
 var discoverSwiper = new Swiper ('#discover-swiper', Object.assign({}, swiperOptions, {width: 320}));
-var discoverSwiper2 = new Swiper ('#discover-swiper2', Object.assign({}, swiperOptions, {width: 260}));
+var discoverSwiper2 = new Swiper ('#discover-swiper2', Object.assign({}, swiperOptions, {width: 360}));
 var discoverSwiper3 = new Swiper ('#discover-swiper3', Object.assign({}, swiperOptions, {width: 360}));
+var discoverSwiper4 = new Swiper ('#discover-swiper4', Object.assign({}, swiperOptions, {width: 360}));
+var discoverSwiper5 = new Swiper ('#discover-swiper5', Object.assign({}, swiperOptions, {width: 360}));
 
 
 // Create the Related Posts slider on Single pages

@@ -125,11 +125,7 @@ var app = new Framework7({
 
 
 // Create the tabs views
-var mainView = app.views.create('.view-main');
-var categoriesView = app.views.create('#view-categories');
-var discoverView = app.views.create('#view-discover');
-var searchView = app.views.create('#view-search');
-var pagesView = app.views.create('#view-pages');
+
 
 
 // Function to scale cards when pushed
@@ -468,18 +464,3 @@ $$('.open-notification').on('click', function () {
 });
 
 
-// Toggle Dark Theme for the demo
-var toggleTheme = app.toggle.get('.toggle-theme');
-
-toggleTheme.on('change', function(){
-  $$('body').toggleClass('theme-dark');
-});
-
-// Change Color Theme for the demo
-var currentTheme = 'color-theme-pink';
-
-$$('[name="radio-color-theme"]').on('change', function(e){
-  var selectedTheme = $$('[name="radio-color-theme"]:checked').attr('id');
-  $$('body').toggleClass(currentTheme + ' ' + selectedTheme);
-  currentTheme = selectedTheme;
-});

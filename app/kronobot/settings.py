@@ -37,7 +37,7 @@ ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(",")
 
 
 # Required in order to use Prometheus
-ALLOWED_HOSTS += ['web']
+ALLOWED_HOSTS += ['*']
 
 
 # Application definition

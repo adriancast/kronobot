@@ -124,9 +124,6 @@ var app = new Framework7({
 });
 
 
-// Create the tabs views
-
-
 
 // Function to scale cards when pushed
 function activeCardTouch() {
@@ -145,7 +142,7 @@ function activeCardTouch() {
   });
 
   $$('.swiper-slide a').on('click', function(e){
-    app.views.current.router.navigate($$(this).attr('data-href'));
+    window.location.href = $$(this).attr('href');
   });
 }
 
@@ -217,7 +214,7 @@ var swiperOptions = {
 var discoverSwiper = new Swiper ('#discover-swiper', Object.assign({}, swiperOptions, {width: 320}));
 var discoverSwiper2 = new Swiper ('#discover-swiper2', Object.assign({}, swiperOptions, {width: 360}));
 var discoverSwiper3 = new Swiper ('#discover-swiper3', Object.assign({}, swiperOptions, {width: 360}));
-var discoverSwiper4 = new Swiper ('#discover-swiper4', Object.assign({}, swiperOptions, {width: 360}));
+var discoverSwiper5 = new Swiper ('#discover-swiper4', Object.assign({}, swiperOptions, {width: 360}));
 var discoverSwiper5 = new Swiper ('#discover-swiper5', Object.assign({}, swiperOptions, {width: 360}));
 
 
@@ -313,156 +310,3 @@ $$('.infinite-scroll-content').on('infinite', function () {
     $$('.infinite-scroll-preloader').remove();
   }, 1000);
 });
-
-
-/*********************************************
-All the code below is for the Pages tab.
-You can remove elements that you do not need.
-*********************************************/
-
-
-// Create the Pages tab sliders
-$$(document).on('page:init', '.page[data-name="slider-1"]', function (e) {
-  var pagesSwiper = new Swiper ('#pages-swiper', Object.assign({}, swiperOptions, {width: 320}));
-})
-$$(document).on('page:init', '.page[data-name="slider-2"]', function (e) {
-  var pagesSwiper2 = new Swiper ('#pages-swiper2', Object.assign({}, swiperOptions, {width: 260}));
-})
-$$(document).on('page:init', '.page[data-name="slider-3"]', function (e) {
-  var pagesSwiper3 = new Swiper ('#pages-swiper3', Object.assign({}, swiperOptions, {width: 360}));
-})
-$$(document).on('page:init', '.page[data-name="slider-4"]', function (e) {
-  var pagesSwiper4 = new Swiper ('#pages-swiper4', Object.assign({}, swiperOptions, {width: 280}));
-})
-
-
-// Pull to Refresh on Pages tab
-$$(document).on('page:init', '.page[data-name="pull-to-refresh"]', function (e) {
-  $$('#pages-ptr').on('ptr:refresh', function (e) {
-    // Emulate 1s loading
-    // You can do an Ajax request here to retrieve your posts from a database
-    setTimeout(function () {
-      var html =
-      '<li>'+
-        '<a href="/single/">'+
-          '<div class="item-content">'+
-            '<div class="item-media"><img src="img/thumb-25.jpg" width="44"/></div>'+
-            '<div class="item-inner">'+
-              '<div class="item-subtitle">Fashion</div>'+
-              '<div class="item-title">The Best Diet for a Flatter Belly</div>'+
-              '<div class="item-subtitle bottom-subtitle"><i class="f7-icons">clock</i>2 hours ago</div>'+
-            '</div>'+
-          '</div>'+
-        '</a>'+
-      '</li>';
-
-      // Prepend new list element
-      $$('#pages-ptr').find('#pages-ptr-list').prepend(html);
-      // When loading done, we reset it
-      app.ptr.done($$('#pages-ptr'));
-    }, 1000);
-  });
-});
-
-
-// Infinite Scroll on Pages tab
-$$(document).on('page:init', '.page[data-name="infinite-scroll"]', function (e) {
-  var allowInfinite = true;
-  $$('#pages-infinite-scroll').on('infinite', function () {
-    // Exit, if loading in progress
-    if (!allowInfinite) return;
-    allowInfinite = false;
-
-    // Emulate 1s loading
-    // (You can do an Ajax request here to retrieve your next posts)
-    setTimeout(function () {
-      allowInfinite = true;
-
-      // Generate new items HTML for the demo
-      var html =
-      '<li>'+
-        '<a href="/single/">'+
-          '<div class="item-content">'+
-            '<div class="item-media"><img src="img/thumb-26.jpg" width="44"/></div>'+
-            '<div class="item-inner">'+
-              '<div class="item-subtitle">Fashion</div>'+
-              '<div class="item-title">The Best Diet for a Flatter Belly</div>'+
-              '<div class="item-subtitle bottom-subtitle"><i class="f7-icons">clock</i></i>2 hours ago</div>'+
-            '</div>'+
-          '</div>'+
-        '</a>'+
-      '</li>';
-
-      // Append new items
-      $$('#pages-infinite-scroll-list').append(html);
-
-      // Nothing more to load, detach infinite scroll events to prevent unnecessary loadings
-      app.infiniteScroll.destroy('#pages-infinite-scroll');
-
-      // Remove preloader
-      $$('#pages-infinite-scroll .infinite-scroll-preloader').remove();
-    }, 800);
-  });
-});
-
-
-// Share Dialog feature
-var shareActions = app.actions.create({
-  buttons: [
-    [
-      {
-        text: 'Share this on:',
-        label: true
-      },
-      {
-        text: 'Facebook',
-        bold: true,
-        onClick: function () {
-         window.open('https://www.facebook.com/sharer/sharer.php?u=http%3A//themeforest.net', '_blank');
-       }
-      },
-      {
-        text: 'Twitter',
-        bold: true,
-        onClick: function () {
-         window.open('http://twitter.com/share?text=Welcome%20To%20Yui&url=http://themeforest.net&hashtags=template,mobile', '_blank');
-       }
-      },
-      {
-        text: 'Mail',
-        bold: true,
-        onClick: function () {
-         window.open('mailto:someone@example.com?Subject=Hello', '_blank');
-       }
-      }
-    ],
-    [
-      {
-        text: 'Cancel',
-        color: 'red'
-      }
-    ]
-  ]
-});
-
-// Attach the Share Dialog event to all elements that have the share-actions class
-$$('.share-actions').on('click', function () {
-  shareActions.open();
-});
-
-
-// Notification feature / Create the notification
-var myNotification = app.notification.create({
-  icon: '<i class="f7-icons">bell_fill</i>',
-  title: 'Yui Template',
-  subtitle: 'This is a mobile notification',
-  text: 'Click (x) button to close me',
-  closeButton: true,
-});
-
-// Attach the notification event to all elements that have the open-notification class
-$$('.open-notification').on('click', function () {
-  myNotification.open();
-});
-
-

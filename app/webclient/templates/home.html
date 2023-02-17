@@ -17,18 +17,28 @@
         <!-- Tabbar -->
         <div class="toolbar tabbar tabbar-labels toolbar-bottom">
           <div class="toolbar-inner">
+            {% comment %}
             <a href="#view-categories" class="tab-link">
               <i class="f7-icons">square_grid_2x2_fill</i>
-              <span class="tabbar-label">Categories</span>
+              <span class="tabbar-label">Histórico</span>
             </a>
+            {% endcomment %}
+            {% comment %}
             <a href="#view-discover" class="tab-link tab-link-active">
-              <i class="f7-icons">star_fill</i>
-              <span class="tabbar-label">Discover</span>
+              <i class="f7-icons">house_fill</i>
+              <span class="tabbar-label">Inicio</span>
             </a>
+            {% endcomment %}
+            <span style="color: #9e9e9e;" onclick="window.location.href='https://t.me/kronobotIslasBalearesTest'" class="tab-link">
+              <i class="f7-icons">antenna_radiowaves_left_right</i>
+              <span class="tabbar-label">En directo</span>
+            </span>
+            {% comment %}
             <a href="#view-search" class="tab-link">
               <i class="f7-icons">search</i>
               <span class="tabbar-label">Search</span>
             </a>
+            {% endcomment %}
           </div>
         </div>
 
@@ -39,127 +49,46 @@
             <div class="page-content">
               <div class="block">
                 <div class="title-container">
-                  <h1>Categories</h1>
+                  <h1>Histórico</h1>
                 </div>
                 <div class="categories-container">
                   <a href="/category/">
-                    <div class="category card" style="background-image: url('img/categories/sports.jpg'); box-shadow: 0px 15px 20px -10px rgba(252, 186, 47, 0.5);">
-                      <h2>Sports</h2>
+                    <div class="category card" style="background-color: rgba(252, 186, 47, 1); box-shadow: 0px 15px 20px -10px rgba(252, 186, 47, 0.5);">
+                      <h2>2022</h2>
                     </div>
                   </a>
                   <a href="/category/">
-                    <div class="category card" style="background-image: url('img/categories/travel.jpg'); box-shadow: 0px 15px 20px -10px rgba(128, 213, 250, 0.5);">
-                      <h2>Travel</h2>
+                    <div class="category card" style="background-color: rgba(128, 213, 250, 1); box-shadow: 0px 15px 20px -10px rgba(128, 213, 250, 0.5);">
+                      <h2>2021</h2>
                     </div>
                   </a>
                   <a href="/category/">
-                    <div class="category card" style="background-image: url('img/categories/music.jpg'); box-shadow: 0px 15px 20px -10px rgba(231, 0, 70, 0.5);">
-                      <h2>Music</h2>
+                    <div class="category card" style="background-color: rgba(231, 0, 70, 1); box-shadow: 0px 15px 20px -10px rgba(231, 0, 70, 0.5);">
+                      <h2>2020</h2>
                     </div>
                   </a>
                   <a href="/category/">
-                    <div class="category card" style="background-image: url('img/categories/gaming.jpg'); box-shadow: 0px 15px 20px -10px rgba(37, 57, 155, 0.5);">
-                      <h2>Gaming</h2>
+                    <div class="category card" style="background-color: rgba(37, 57, 155, 1); box-shadow: 0px 15px 20px -10px rgba(37, 57, 155, 0.5);">
+                      <h2>2019</h2>
                     </div>
                   </a>
                   <a href="/category/">
-                    <div class="category card" style="background-image: url('img/categories/photography.jpg'); box-shadow: 0px 15px 20px -10px rgba(37, 227, 154, 0.5);">
-                      <h2>Photo</h2>
+                    <div class="category card" style="background-color: rgba(37, 227, 154, 1); box-shadow: 0px 15px 20px -10px rgba(37, 227, 154, 0.5);">
+                      <h2>2018</h2>
                     </div>
                   </a>
                   <a href="/category/">
-                    <div class="category card" style="background-image: url('img/categories/food.jpg'); box-shadow: 0px 15px 20px -10px rgba(255, 128, 169, 0.5);">
-                      <h2>Food</h2>
+                    <div class="category card" style="background-color: rgba(255, 128, 169, 1); box-shadow: 0px 15px 20px -10px rgba(255, 128, 169, 0.5);">
+                      <h2>2017</h2>
                     </div>
                   </a>
                 </div>
-                <div class="title-container">
-                  <span class="title-date">Recent posts</span>
-                  <div class="title-with-link">
-                    <h1>Sports</h1>
-                    <a href="/category/" class="col button button-small button-round button-fill">See All</a>
-                  </div>
-                </div>
-                <div class="two-columns-cards">
-                  <a href="/single/">
-                    <div class="card">
-                      <img class="card-image" src="{% static 'img/thumb-4.jpg' %}" alt="">
-                      <div class="card-infos">
-                        <h2 class="card-title">Nadal Wins at Roland Garros</h2>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="/single/">
-                    <div class="card">
-                      <img class="card-image" src="{% static 'img/thumb-8.jpg' %}" alt="">
-                      <div class="card-infos">
-                        <h2 class="card-title">Moto-Cross: The Champions Made the Show</h2>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="/single/">
-                    <div class="card">
-                      <img class="card-image" src="{% static 'img/thumb-17.jpg' %}" alt="">
-                      <div class="card-infos">
-                        <h2 class="card-title">Will Conor Return to the UFC Octagon?</h2>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="/single/">
-                    <div class="card">
-                      <img class="card-image" src="{% static 'img/thumb-18.jpg' %}" alt="">
-                      <div class="card-infos">
-                        <h2 class="card-title">Anna Gasser's Snowboard Win</h2>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div class="title-container">
-                  <span class="title-date">Recent posts</span>
-                  <div class="title-with-link">
-                    <h1>Lifestyle</h1>
-                    <a href="/category/" class="col button button-small button-round button-fill">See All</a>
-                  </div>
-                </div>
-                <div class="two-columns-cards">
-                  <a href="/single/">
-                    <div class="card">
-                      <img class="card-image" src="{% static 'img/thumb-9.jpg' %}" alt="">
-                      <div class="card-infos">
-                        <h2 class="card-title">The Best Exotic Destinations</h2>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="/single/">
-                    <div class="card">
-                      <img class="card-image" src="{% static 'img/thumb-6.jpg' %}" alt="">
-                      <div class="card-infos">
-                        <h2 class="card-title">Top Sunglasses Models for This Summer</h2>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="/single/">
-                    <div class="card">
-                      <img class="card-image" src="{% static 'img/thumb-38.jpg' %}" alt="">
-                      <div class="card-infos">
-                        <h2 class="card-title">Join the Paris Body Painting Contest</h2>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="/single/">
-                    <div class="card">
-                      <img class="card-image" src="{% static 'img/thumb-39.jpg' %}" alt="">
-                      <div class="card-infos">
-                        <h2 class="card-title">Nicki Minaj in Featuring with Drake!</h2>
-                      </div>
-                    </div>
-                  </a>
-                </div>
+                
               </div>
             </div>
           </div>
         </div>
-        <!-- Discover View -->
+        <!-- Inicio View -->
         <div id="view-discover" class="view tab tab-active">
           <div data-name="discover" class="page no-navbar">
             <!-- Scrollable page content -->
@@ -172,7 +101,7 @@
                   <span class="title-date">2023</span>
                   <div class="title-with-link">
                     <h1>Próximos eventos</h1>
-                    <i class="f7-icons">star_fill</i>
+                    <i class="f7-icons">calendar</i>
                   </div>
                 </div>
               </div>
@@ -181,7 +110,7 @@
                 <div class="swiper-wrapper">
                   {% for event in next_events %}
                   <div class="swiper-slide">
-                    <a href="{{event.id}}" data-href="/single/">
+                    <a href="/events/{{event.id}}">
                       <div class="card">
                         <img class="card-image" src="{{event.img}}" alt="">
                         <div class="card-infos">

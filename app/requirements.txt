@@ -7,6 +7,6 @@ psycopg2-binary==2.9.4
 sentry-sdk==1.9.10
 django-prometheus==2.2.0
 beautifulsoup4==4.11.1
-requests
-python-telegram-bot
+requests==2.28.2
+python-telegram-bot==20.1
 django-unfold==0.4.5

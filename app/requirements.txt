@@ -9,3 +9,4 @@ django-prometheus==2.2.0
 beautifulsoup4==4.11.1
 requests
 python-telegram-bot
+django-unfold==0.4.5

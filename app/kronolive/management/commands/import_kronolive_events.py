@@ -6,11 +6,11 @@ from bs4 import BeautifulSoup
 from django.core.management.base import BaseCommand
 from requests import RequestException
 
-from core.models import EventModel
+from core.models import EventModel, EventProvider, EventCategory
 
 
 class Command(BaseCommand):
-    help = "Closes the specified poll for voting"
+    help = "Execute Kronolive events synchronization"
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -59,9 +59,23 @@ class Command(BaseCommand):
 
             date = date_soup.text.strip()
             event_name = name_soup.text.strip()
+            kronolive_times_url = f"http://kronolive.es{kronolive_times_url}"
+            kronolive_inscribed_url = f"http://kronolive.es{kronolive_inscribed_url}"
+            category = self.__decide_event_category(event_name)
             EventModel.objects.get_or_create(
                 name=event_name,
                 date=datetime.strptime(date, "%d/%m/%Y"),
-                kronolive_times_url=f"http://kronolive.es{kronolive_times_url}",
-                kronolive_inscribed_url=f"http://kronolive.es{kronolive_inscribed_url}",
+                category=category,
+                provider_name=EventProvider.KRONOLIVE,
+                provider_data={
+                    "times_url": kronolive_times_url,
+                    "inscribed_url": kronolive_inscribed_url,
+                },
             )
+
+    def __decide_event_category(self, event_name: str):
+        lower_event_name = event_name.lower()
+        if "pujada" in lower_event_name:
+            return EventCategory.HILL_CLIMB
+
+        return EventCategory.RALLY

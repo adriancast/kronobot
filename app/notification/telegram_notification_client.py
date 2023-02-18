@@ -43,7 +43,6 @@ class TelegramNotificationClient:
                 [
                     short_description,
                     pilot_text,
-                    copilot_text,
                     car_text,
                     section_name_text,
                     section_time_text,

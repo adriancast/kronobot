@@ -2,18 +2,18 @@ from django.contrib import admin
 from django.contrib import messages
 from django.core.exceptions import MultipleObjectsReturned
 from django.utils.safestring import mark_safe
-
+from unfold.admin import ModelAdmin, StackedInline
 from core.models import InscriptionModel, CompetitorModel
 
 
-class PilotInscriptionInline(admin.StackedInline):
+class PilotInscriptionInline(StackedInline):
     model = InscriptionModel
     fk_name = "pilot"
     extra = 0
     verbose_name = "Pilot inscription"
 
 
-class CopilotInscriptionInline(admin.StackedInline):
+class CopilotInscriptionInline(StackedInline):
     model = InscriptionModel
     fk_name = "copilot"
     extra = 0
@@ -40,7 +40,7 @@ def set_all_competitors_same_photo(modeladmin, request, queryset):
     queryset.update(photo=car_photo)
 
 
-class CompetitorAdmin(admin.ModelAdmin):
+class CompetitorAdmin(ModelAdmin):
     list_display = ("name", "photo")
     list_filter = ("name",)
     search_fields = ("name",)

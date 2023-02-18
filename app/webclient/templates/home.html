@@ -118,6 +118,7 @@
                       <div class="card">
                         <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                         <div class="card-infos">
+                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.date|date:"d/m/Y"}}</div>
                           <h2 class="card-title">{{event.name}}</h2>
                         </div>
                       </div>
@@ -143,6 +144,7 @@
                       <div class="card medium">
                         <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                         <div class="card-infos">
+                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.date|date:"d/m/Y"}}</div>
                           <h2 class="card-title">{{event.name}}</h2>
                         </div>
                       </div>
@@ -173,6 +175,7 @@
                        <div class="card medium">
                          <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                          <div class="card-infos">
+                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.date|date:"d/m/Y"}}</div>
                            <h2 class="card-title">{{event.name}}</h2>
                          </div>
                        </div>
@@ -207,6 +210,7 @@
                        <div class="card medium">
                          <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                          <div class="card-infos">
+                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.date|date:"d/m/Y"}}</div>
                            <h2 class="card-title">{{event.name}}</h2>
                          </div>
                        </div>
@@ -237,6 +241,7 @@
                        <div class="card medium">
                          <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                          <div class="card-infos">
+                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.date|date:"d/m/Y"}}</div>
                            <h2 class="card-title">{{event.name}}</h2>
                          </div>
                        </div>
@@ -249,6 +254,62 @@
                  </div>
                </div>
                {% endif %}
+
+               {% if competitors %}
+               <div class="block">
+              
+                <div class="title-medium-container">
+                   <h2>Competidores</h2>
+                 </div>
+               </div>
+               <div id="discover-swiper6" class="swiper-container">
+                 <div class="swiper-wrapper">
+                   {% for competitor in competitors %}
+                   <div class="swiper-slide">
+                     <a href="#">
+                       <div class="card medium">
+                         <img class="card-image" src="{% if competitor.photo %}{{competitor.photo.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
+                         <div class="card-infos">
+                           <h2 class="card-title">{{competitor.name}}</h2>
+                         </div>
+                       </div>
+                     </a>
+                     
+                   </div>
+                   {% endfor %}
+                   
+                 
+                 </div>
+               </div>
+              {% endif %}
+
+              {% if historic %}
+              <div class="block">
+             
+               <div class="title-medium-container">
+                  <h2>Eventos por año</h2>
+                </div>
+              </div>
+              <div id="discover-swiper7" class="swiper-container">
+                <div class="swiper-wrapper">
+                  {% for year in historic %}
+                  <div class="swiper-slide">
+                    <a href="#" data-href="/single/">
+                      <div class="card medium">
+                        <img class="card-image" src="{%  static 'img/categories/historic.jpeg'  %}" alt="">
+                        <div class="card-infos">
+                          <h2 class="card-title">Eventos {{year}}</h2>
+                        </div>
+                      </div>
+                    </a>
+                    
+                  </div>
+                  {% endfor %}
+                  
+                
+                </div>
+              </div>
+             {% endif %}
             </div>
           </div>
         </div>

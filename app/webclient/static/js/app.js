@@ -216,8 +216,8 @@ var discoverSwiper2 = new Swiper ('#discover-swiper2', Object.assign({}, swiperO
 var discoverSwiper3 = new Swiper ('#discover-swiper3', Object.assign({}, swiperOptions, {width: 360}));
 var discoverSwiper5 = new Swiper ('#discover-swiper4', Object.assign({}, swiperOptions, {width: 360}));
 var discoverSwiper5 = new Swiper ('#discover-swiper5', Object.assign({}, swiperOptions, {width: 360}));
-
-
+var discoverSwiper6 = new Swiper ('#discover-swiper6', Object.assign({}, swiperOptions, {width: 360}));
+var discoverSwiper7 = new Swiper ('#discover-swiper7', Object.assign({}, swiperOptions, {width: 360}));
 // Create the Related Posts slider on Single pages
 $$(document).on('page:init', '.page[data-name="single"]', function (e) {
   var rpSwiper = new Swiper (e.detail.$el.find('.single-swiper'), Object.assign({}, swiperOptions, {width: 280}));

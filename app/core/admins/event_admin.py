@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-
+from unfold.admin import ModelAdmin, TabularInline
 from core.models import InscriptionModel
 
 
-class InscriptionInline(admin.TabularInline):
+class InscriptionInline(TabularInline):
     model = InscriptionModel
     extra = 0
     can_delete = False
@@ -19,7 +19,7 @@ class InscriptionInline(admin.TabularInline):
             )
 
 
-class EventAdmin(admin.ModelAdmin):
+class EventAdmin(ModelAdmin):
     list_display = ("name", "date")
     list_filter = ("name", "date")
     search_fields = ("name", "date")

@@ -43,6 +43,9 @@ ALLOWED_HOSTS += ['web']
 # Application definition
 
 INSTALLED_APPS = [
+    "unfold",
+    "unfold.contrib.filters",
+    "unfold.contrib.forms",
     'django_prometheus',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -152,8 +155,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Django admin interface settings
-INSTALLED_APPS = ['admin_interface', 'colorfield'] + INSTALLED_APPS
-X_FRAME_OPTIONS = 'SAMEORIGIN'
+UNFOLD = {
+    "SITE_TITLE": "Kronobot",
+    "SITE_HEADER": "Kronobot",
+    "SITE_URL": "/",
+}
 
 SENTRY_DSN = os.environ.get("SENTRY_DSN")
 if SENTRY_DSN is not None:

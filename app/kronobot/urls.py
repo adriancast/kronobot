@@ -8,8 +8,8 @@ from home.views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('prometheus/', include('django_prometheus.urls')),
-    path('', index, name="index")
-
+    path('', index, name="index"),
+    path('showcase', include('webclient.urls')),
 ]
 
 if settings.DEBUG:

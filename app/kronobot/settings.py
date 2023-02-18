@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'core',
     'kronolive',
     'home',
+    'webclient',
 ]
 
 MIDDLEWARE = [

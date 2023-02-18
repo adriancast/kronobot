@@ -14,6 +14,7 @@
   <body class="color-theme-pink">
     <div id="app">
       <div class="views tabs">
+        {% if is_live %}
         <!-- Tabbar -->
         <div class="toolbar tabbar tabbar-labels toolbar-bottom">
           <div class="toolbar-inner">
@@ -41,6 +42,7 @@
             {% endcomment %}
           </div>
         </div>
+        {% endif %}
 
         <!-- Categories View -->
         <div id="view-categories" class="view tab">
@@ -93,9 +95,11 @@
           <div data-name="discover" class="page no-navbar">
             <!-- Scrollable page content -->
             <div class="page-content">
+              {% if next_events %}
               <div class="discover-gradient">
                 <svg viewBox="0 0 100 100" preserveAspectRatio="none"><polygon fill="white" points="0,100 100,0 100,100"/></svg>
               </div>
+
               <div class="block">
                 <div class="title-container white">
                   <span class="title-date">2023</span>
@@ -110,9 +114,9 @@
                 <div class="swiper-wrapper">
                   {% for event in next_events %}
                   <div class="swiper-slide">
-                    <a href="/events/{{event.id}}">
+                    <a href="">
                       <div class="card">
-                        <img class="card-image" src="{{event.img}}" alt="">
+                        <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                         <div class="card-infos">
                           <h2 class="card-title">{{event.name}}</h2>
                         </div>
@@ -123,7 +127,8 @@
                   
                 </div>
                </div>
-              
+               {% endif %}
+              {% if rallyes %}
               <div class="block">
               
                <div class="title-medium-container">
@@ -134,9 +139,9 @@
                 <div class="swiper-wrapper">
                   {% for event in rallyes %}
                   <div class="swiper-slide">
-                    <a href="{{event.id}}" data-href="/single/">
+                    <a href="#" data-href="/single/">
                       <div class="card medium">
-                        <img class="card-image" src="{{event.img}}" alt="">
+                        <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                         <div class="card-infos">
                           <h2 class="card-title">{{event.name}}</h2>
                         </div>
@@ -149,11 +154,11 @@
                 
                 </div>
               </div>
+              {% endif %}
 
 
 
-
-
+              {% if pujades %}
               <div class="block">
               
                 <div class="title-medium-container">
@@ -162,11 +167,11 @@
                </div>
                <div id="discover-swiper3" class="swiper-container">
                  <div class="swiper-wrapper">
-                   {% for event in pujades%}
+                   {% for event in pujades %}
                    <div class="swiper-slide">
-                     <a href="{{event.id}}" data-href="/single/">
+                     <a href="#" data-href="/single/">
                        <div class="card medium">
-                         <img class="card-image" src="{{event.img}}" alt="">
+                         <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                          <div class="card-infos">
                            <h2 class="card-title">{{event.name}}</h2>
                          </div>
@@ -179,7 +184,7 @@
                  
                  </div>
                </div>
-             
+             {% endif %}
 
 
 
@@ -187,7 +192,7 @@
 
 
 
-
+               {% if karting %}
                <div class="block">
               
                 <div class="title-medium-container">
@@ -198,9 +203,9 @@
                  <div class="swiper-wrapper">
                    {% for event in karting %}
                    <div class="swiper-slide">
-                     <a href="{{event.id}}" data-href="/single/">
+                     <a href="#" data-href="/single/">
                        <div class="card medium">
-                         <img class="card-image" src="{{event.img}}" alt="">
+                         <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                          <div class="card-infos">
                            <h2 class="card-title">{{event.name}}</h2>
                          </div>
@@ -213,11 +218,11 @@
                  
                  </div>
                </div>
+              {% endif %}
 
 
 
-
-
+               {% if autocross %}
                <div class="block">
               
                 <div class="title-medium-container">
@@ -228,9 +233,9 @@
                  <div class="swiper-wrapper">
                    {% for event in autocross %}
                    <div class="swiper-slide">
-                     <a href="{{event.id}}" data-href="/single/">
+                     <a href="#">
                        <div class="card medium">
-                         <img class="card-image" src="{{event.img}}" alt="">
+                         <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                          <div class="card-infos">
                            <h2 class="card-title">{{event.name}}</h2>
                          </div>
@@ -243,7 +248,7 @@
                  
                  </div>
                </div>
-
+               {% endif %}
             </div>
           </div>
         </div>

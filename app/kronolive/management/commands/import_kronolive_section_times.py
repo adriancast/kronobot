@@ -17,12 +17,13 @@ from core.models import (
     SectionModel,
     InscriptionModel,
     SectionTimeModel,
+    EventProvider,
 )
 from notification.telegram_notification_client import TelegramNotificationClient
 
 
 class Command(BaseCommand):
-    help = "Closes the specified poll for voting"
+    help = "Execute Kronolive section times synchronization"
     __TELEGRAM_SLEEP_AFTER_NOTIFICATION = 2
 
     def __init__(self, *args, **kwargs):
@@ -46,7 +47,7 @@ class Command(BaseCommand):
     def handle(self, sync: str, notify: bool, *args, **options):
         today = datetime.now()
         events_to_sync = EventModel.objects.filter(
-            date__year=today.year, date__month=today.month
+            date__year=today.year, date__month=today.month, provider_name=EventProvider.KRONOLIVE
         ).order_by("-date")
         if sync == "all":
             events_to_sync = EventModel.objects.all().order_by("-date")
@@ -56,7 +57,7 @@ class Command(BaseCommand):
 
     def __sync_event_times(self, event: EventModel, notify_telegram: bool):
         try:
-            response = requests.get(event.kronolive_times_url, timeout=5)
+            response = requests.get(event.provider_data["times_url"], timeout=5)
         except RequestException as e:
             logging.exception(f"Exception updating section times. Reason: {e}")
             return None
@@ -68,7 +69,7 @@ class Command(BaseCommand):
         category_soup = filters_soup.find_all("option")
         event_categories = [option["value"] for option in category_soup]
         for event_category in event_categories:
-            kronolive_event_code = event.kronolive_times_url.split("/")[-2]
+            kronolive_event_code = event.provider_data["times_url"].split("/")[-2]
             event_category_times_url = (
                 f"http://kronolive.es/tiempos.aspx?p={kronolive_event_code}&c={event_category}"
             )
@@ -136,7 +137,7 @@ class Command(BaseCommand):
                             try:
                                 self.__telegram.notify_time(
                                     pilot_name=inscription.pilot.name,
-                                    copilot_name=inscription.copilot.name,
+                                    copilot_name=inscription.copilot.name if inscription.copilot else None,
                                     car=inscription.car,
                                     section_name=verbose_section_names.get(section_code)
                                     or section_code,

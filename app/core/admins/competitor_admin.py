@@ -11,6 +11,7 @@ class PilotInscriptionInline(StackedInline):
     fk_name = "pilot"
     extra = 0
     verbose_name = "Pilot inscription"
+    readonly_fields = ("car", "category", "dorsal", "event", "copilot")
 
 
 class CopilotInscriptionInline(StackedInline):
@@ -18,6 +19,7 @@ class CopilotInscriptionInline(StackedInline):
     fk_name = "copilot"
     extra = 0
     verbose_name = "Copilot inscription"
+    readonly_fields = ("car", "category", "dorsal", "event", "pilot")
 
 
 @admin.action(description="Set all competitors with same photo")

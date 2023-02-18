@@ -6,11 +6,11 @@ from bs4 import BeautifulSoup
 from django.core.management.base import BaseCommand
 from requests import RequestException
 
-from core.models import EventModel, InscriptionModel, CompetitorModel
+from core.models import EventModel, InscriptionModel, CompetitorModel, EventProvider
 
 
 class Command(BaseCommand):
-    help = "Closes the specified poll for voting"
+    help = "Execute Kronolive inscriptions synchronization"
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -20,7 +20,7 @@ class Command(BaseCommand):
     def handle(self, sync: str, *args, **options):
         today = datetime.now()
         events_to_sync = EventModel.objects.filter(
-            date__year=today.year, date__month=today.month
+            date__year=today.year, date__month=today.month, provider_name=EventProvider.KRONOLIVE
         ).order_by("-date")
         if sync == "all":
             events_to_sync = EventModel.objects.all().order_by("-date")
@@ -30,7 +30,7 @@ class Command(BaseCommand):
 
     def __sync_event_inscriptions(self, event: EventModel):
         try:
-            response = requests.get(event.kronolive_inscribed_url, timeout=5)
+            response = requests.get(event.provider_data["inscribed_url"], timeout=5)
         except RequestException as e:
             logging.exception(f"Exception updating inscriptions. Reason: {e}")
             return None

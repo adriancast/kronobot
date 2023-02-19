@@ -65,7 +65,7 @@ class Command(BaseCommand):
 
             try:
                 kronobot_event = EventModel.objects.get(
-                    date=datetime.strptime(date, "%d/%m/%Y"),
+                    start_date=datetime.strptime(date, "%d/%m/%Y"),
                     category=category,
                 )
 

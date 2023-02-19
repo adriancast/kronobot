@@ -294,7 +294,7 @@
                 <div class="swiper-wrapper">
                   {% for year in historic %}
                   <div class="swiper-slide">
-                    <a href="#" data-href="/single/">
+                    <a href="{% url 'archive' year %}" data-href="/single/">
                       <div class="card medium">
                         <img class="card-image" src="{%  static 'img/categories/historic.jpeg'  %}" alt="">
                         <div class="card-infos">

@@ -6,9 +6,12 @@ from datetime import datetime
 
 def showcase(request, year: int = None):
     filter_by_year = year if year is not None else datetime.today().year
+    today = datetime.today()
     context = {
-        "is_live": EventModel.objects.filter(start_date=datetime.today()).exists(),
-        "next_events": EventModel.objects.filter(start_date__gte=datetime.today()).order_by("start_date")[:5],
+        "is_live": EventModel.objects.filter(start_date__lte=today, end_date__gte=today).exists(),
+        "next_events": EventModel.objects.filter(end_date__gte=datetime.today()).order_by(
+            "start_date"
+        )[:5],
         "rallyes": EventModel.objects.filter(
             category=EventCategory.RALLY, start_date__year=filter_by_year
         ).order_by("start_date"),

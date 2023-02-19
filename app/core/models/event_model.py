@@ -16,7 +16,7 @@ class EventProvider(models.TextChoices):
 class EventModel(models.Model):
     name = models.CharField(max_length=256)
     start_date = models.DateField()
-    end_date = models.DateField(null=True)
+    end_date = models.DateField()
     picture = models.ImageField(upload_to="events", blank=True, null=True)
     category = models.CharField(
         max_length=16,

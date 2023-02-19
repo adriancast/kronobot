@@ -64,7 +64,8 @@ class Command(BaseCommand):
             category = self.__decide_event_category(event_name)
             EventModel.objects.get_or_create(
                 name=event_name,
-                date=datetime.strptime(date, "%d/%m/%Y"),
+                start_date=datetime.strptime(date, "%d/%m/%Y"),
+                end_date=datetime.strptime(date, "%d/%m/%Y"),
                 category=category,
                 provider_name=EventProvider.KRONOLIVE,
                 provider_data={

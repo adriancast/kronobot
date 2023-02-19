@@ -10,7 +10,7 @@ from core.models import EventModel, EventProvider, EventCategory
 
 
 class Command(BaseCommand):
-    help = "Execute Kronolive events synchronization"
+    help = "Try to link kronolive events with our local events database"
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -62,16 +62,21 @@ class Command(BaseCommand):
             kronolive_times_url = f"http://kronolive.es{kronolive_times_url}"
             kronolive_inscribed_url = f"http://kronolive.es{kronolive_inscribed_url}"
             category = self.__decide_event_category(event_name)
-            EventModel.objects.get_or_create(
-                name=event_name,
-                date=datetime.strptime(date, "%d/%m/%Y"),
-                category=category,
-                provider_name=EventProvider.KRONOLIVE,
-                provider_data={
+
+            try:
+                kronobot_event = EventModel.objects.get(
+                    date=datetime.strptime(date, "%d/%m/%Y"),
+                    category=category,
+                )
+
+                kronobot_event.provider_name = EventProvider.KRONOLIVE
+                kronobot_event.provider_data = {
                     "times_url": kronolive_times_url,
                     "inscribed_url": kronolive_inscribed_url,
-                },
-            )
+                }
+                kronobot_event.save()
+            except EventModel.DoesNotExist:
+                pass
 
     def __decide_event_category(self, event_name: str):
         lower_event_name = event_name.lower()

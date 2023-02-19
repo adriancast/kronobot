@@ -118,7 +118,7 @@
                       <div class="card">
                         <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                         <div class="card-infos">
-                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.date|date:"d/m/Y"}}</div>
+                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.start_date|date:"d/m/Y"}}</div>
                           <h2 class="card-title">{{event.name}}</h2>
                         </div>
                       </div>
@@ -144,7 +144,7 @@
                       <div class="card medium">
                         <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                         <div class="card-infos">
-                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.date|date:"d/m/Y"}}</div>
+                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.start_date|date:"d/m/Y"}}</div>
                           <h2 class="card-title">{{event.name}}</h2>
                         </div>
                       </div>
@@ -175,7 +175,7 @@
                        <div class="card medium">
                          <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                          <div class="card-infos">
-                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.date|date:"d/m/Y"}}</div>
+                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.start_date|date:"d/m/Y"}}</div>
                            <h2 class="card-title">{{event.name}}</h2>
                          </div>
                        </div>
@@ -210,7 +210,7 @@
                        <div class="card medium">
                          <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                          <div class="card-infos">
-                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.date|date:"d/m/Y"}}</div>
+                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.start_date|date:"d/m/Y"}}</div>
                            <h2 class="card-title">{{event.name}}</h2>
                          </div>
                        </div>
@@ -241,7 +241,7 @@
                        <div class="card medium">
                          <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                          <div class="card-infos">
-                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.date|date:"d/m/Y"}}</div>
+                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.start_date|date:"d/m/Y"}}</div>
                            <h2 class="card-title">{{event.name}}</h2>
                          </div>
                        </div>

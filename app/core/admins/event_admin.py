@@ -20,8 +20,8 @@ class InscriptionInline(TabularInline):
 
 
 class EventAdmin(ModelAdmin):
-    list_display = ("name", "date")
-    list_filter = ("name", "date")
-    search_fields = ("name", "date")
+    list_display = ("name", "start_date")
+    list_filter = ("name", "start_date")
+    search_fields = ("name", "start_date")
 
     inlines = (InscriptionInline,)

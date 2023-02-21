@@ -16,7 +16,7 @@
   </head>
   <body class="color-theme-pink">
     <div id="app">
-      <div class="views tabs">
+      <div class="views tabs" style="max-width: 1000px; margin: auto;">
         <div class="page single single-1 no-navbar" data-name="single">
           <div class="page-content">
             <img class="cover-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
@@ -35,7 +35,7 @@
                       {% for inscription in inscriptions %}
                       <li>
                         <a href="#" class="item item-content">
-                          <div class="item-media"><img src="{% if inscription.piloto.photo %}{{inscription.piloto.photo.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="" style="height: 55px;"></div>
+                          <div class="item-media"><img src="{% if inscription.pilot.photo %}{{inscription.pilot.photo.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="" style="height: 55px;"></div>
                           <div class="item-inner">
                             <div class="item-title-row">
                               <div class="item-title">{{inscription.pilot.name}}</div>

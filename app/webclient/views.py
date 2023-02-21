@@ -34,5 +34,19 @@ def showcase(request, year: int = None):
 
 
 def events(request):
-    context = {}
+    context = {
+        "escuderia":[
+            { "name":"E.MCA.Competició", "id":1,},
+            { "name":"E.COSTA NORD", "id":2,},
+            { "name":"FAIB", "id":3,},
+            { "name":"P.A.S.Q.", "id":4,},
+            { "name":"E.SANT SALVADOR", "id":5,},
+            { "name":"E.MANACOR", "id":6,},
+            { "name":"M.C.S.R.P", "id":7,},
+            { "name":"E.MITJA ILLA", "id":8,},
+            { "name":"A.C.I.F", "id":9,},
+            { "name":"E.SERRA TRAMUNTANA", "id":10,},
+            { "name":"E.BUNYOLA", "id":11,},
+        ]
+    }
     return render(request, 'event.html', context)

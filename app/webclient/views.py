@@ -30,3 +30,9 @@ def showcase(request, year: int = None):
         ),
     }
     return render(request, "home.html", context)
+    
+
+
+def events(request):
+    context = {}
+    return render(request, 'event.html', context)

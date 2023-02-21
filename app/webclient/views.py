@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from core.models import EventModel, EventCategory
+from core.models import EventModel, EventCategory, InscriptionModel
 from core.models import CompetitorModel
 from datetime import datetime
 
@@ -33,20 +33,14 @@ def showcase(request, year: int = None):
     
 
 
-def events(request):
+def events(request, event_id: int = None):
+    event = EventModel.objects.get(id=event_id)
     context = {
-        "escuderia":[
-            { "name":"E.MCA.Competició", "id":1,},
-            { "name":"E.COSTA NORD", "id":2,},
-            { "name":"FAIB", "id":3,},
-            { "name":"P.A.S.Q.", "id":4,},
-            { "name":"E.SANT SALVADOR", "id":5,},
-            { "name":"E.MANACOR", "id":6,},
-            { "name":"M.C.S.R.P", "id":7,},
-            { "name":"E.MITJA ILLA", "id":8,},
-            { "name":"A.C.I.F", "id":9,},
-            { "name":"E.SERRA TRAMUNTANA", "id":10,},
-            { "name":"E.BUNYOLA", "id":11,},
-        ]
+        "event": event,
+        "event_description": (
+            """🕘 12:33
+            📍Puig major"""
+        ),
+        "inscriptions": InscriptionModel.objects.filter(event=event),
     }
-    return render(request, 'event.html', context)
+    return render(request, 'events.html', context)

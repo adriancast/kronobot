@@ -114,7 +114,7 @@
                 <div class="swiper-wrapper">
                   {% for event in next_events %}
                   <div class="swiper-slide">
-                    <a href="">
+                    <a href="{% url 'event' event.id %}">
                       <div class="card">
                         <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                         <div class="card-infos">
@@ -140,7 +140,7 @@
                 <div class="swiper-wrapper">
                   {% for event in rallyes %}
                   <div class="swiper-slide">
-                    <a href="#" data-href="/single/">
+                    <a href="{% url 'event' event.id %}" data-href="/single/">
                       <div class="card medium">
                         <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                         <div class="card-infos">
@@ -171,7 +171,7 @@
                  <div class="swiper-wrapper">
                    {% for event in pujades %}
                    <div class="swiper-slide">
-                     <a href="#" data-href="/single/">
+                     <a href="{% url 'event' event.id %}" data-href="/single/">
                        <div class="card medium">
                          <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                          <div class="card-infos">
@@ -206,7 +206,7 @@
                  <div class="swiper-wrapper">
                    {% for event in karting %}
                    <div class="swiper-slide">
-                     <a href="#" data-href="/single/">
+                     <a href="{% url 'event' event.id %}" data-href="/single/">
                        <div class="card medium">
                          <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                          <div class="card-infos">
@@ -237,7 +237,7 @@
                  <div class="swiper-wrapper">
                    {% for event in autocross %}
                    <div class="swiper-slide">
-                     <a href="#">
+                     <a href="{% url 'event' event.id %}">
                        <div class="card medium">
                          <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                          <div class="card-infos">

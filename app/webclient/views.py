@@ -44,3 +44,15 @@ def events(request, event_id: int = None):
         "inscriptions": InscriptionModel.objects.filter(event=event),
     }
     return render(request, 'events.html', context)
+
+def competitors(request, competitor_id):
+    competitors = CompetitorModel.objects.get(id=competitor_id)
+    context={
+        "competitor": competitors,
+        "total_events": 100,
+        "total_events_driving": 60,
+        "total_events_codriving": 40,
+        "car":"Peugeot 205 GTI"
+
+    }
+    return render(request, 'competitors.html', context)

@@ -1164,8 +1164,8 @@ iframe, video {
 	max-width: 600px;
 }
 .author .author-avatar {
-	width: 100px;
-	border-radius: 100px;
+	width: 200px;
+	border-radius: 50px;
 	margin-top: -50px;
 	border: 5px solid #fff;
 }

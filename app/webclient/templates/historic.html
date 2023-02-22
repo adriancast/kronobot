@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0J52K32FHH"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-0J52K32FHH');
+        </script>
+        
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Kronobot</title>
+    <link rel="stylesheet" href="{% static 'css/framework7.bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/framework7-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body class="color-theme-pink">
+    <div id="app">
+      <div class="views tabs">
+
+        <!-- Inicio View -->
+        <div id="view-discover" class="view tab tab-active">
+          <div data-name="discover" class="page no-navbar">
+            <!-- Scrollable page content -->
+            <div class="page-content">
+              <div class="discover-gradient" style="width:20000px; height:120px">
+                <svg viewBox="0 0 100 100" preserveAspectRatio="none"><polygon fill="white" points="0,100 100,0 100,100"/></svg>
+              </div>
+
+              <div class="block">
+                <div class="title-container white">
+                  <span class="title-date">{{year}}</span>
+                  <div class="title-with-link">
+                    <h1>Histórico </h1>
+                    <i class="f7-icons">calendar</i>
+                  </div>
+                </div>
+              </div>
+              {% if rallyes %}
+              <div class="block">
+              
+               <div class="title-medium-container">
+                  <h2>Rallyes</h2>
+                </div>
+              </div>
+              <div id="discover-swiper2" class="swiper-container">
+                <div class="swiper-wrapper">
+                  {% for event in rallyes %}
+                  <div class="swiper-slide">
+                    <a href="{% url 'event' event.id %}" data-href="/single/">
+                      <div class="card medium">
+                        <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
+                        <div class="card-infos">
+                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.start_date|date:"d/m/Y"}}</div>
+                          <h2 class="card-title">{{event.name}}</h2>
+                        </div>
+                      </div>
+                    </a>
+                    
+                  </div>
+                  {% endfor %}
+                  
+                
+                </div>
+              </div>
+              {% endif %}
+
+
+
+              {% if pujades %}
+              <div class="block">
+              
+                <div class="title-medium-container">
+                   <h2>Pujades</h2>
+                 </div>
+               </div>
+               <div id="discover-swiper3" class="swiper-container">
+                 <div class="swiper-wrapper">
+                   {% for event in pujades %}
+                   <div class="swiper-slide">
+                     <a href="{% url 'event' event.id %}" data-href="/single/">
+                       <div class="card medium">
+                         <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
+                         <div class="card-infos">
+                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.start_date|date:"d/m/Y"}}</div>
+                           <h2 class="card-title">{{event.name}}</h2>
+                         </div>
+                       </div>
+                     </a>
+                     
+                   </div>
+                   {% endfor %}
+                   
+                 
+                 </div>
+               </div>
+             {% endif %}
+             {% if karting %}
+             <div class="block">
+            
+              <div class="title-medium-container">
+                 <h2>Karting</h2>
+               </div>
+             </div>
+             <div id="discover-swiper4" class="swiper-container">
+               <div class="swiper-wrapper">
+                 {% for event in karting %}
+                 <div class="swiper-slide">
+                   <a href="{% url 'event' event.id %}" data-href="/single/">
+                     <div class="card medium">
+                       <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
+                       <div class="card-infos">
+                        <div class="card-date"><i class="f7-icons">calendar</i>{{event.start_date|date:"d/m/Y"}}</div>
+                         <h2 class="card-title">{{event.name}}</h2>
+                       </div>
+                     </div>
+                   </a>
+                   
+                 </div>
+                 {% endfor %}
+                 
+               
+               </div>
+             </div>
+            {% endif %}
+
+             {% if autocross %}
+               <div class="block">
+              
+                <div class="title-medium-container">
+                   <h2>Autocross</h2>
+                 </div>
+               </div>
+               <div id="discover-swiper5" class="swiper-container">
+                 <div class="swiper-wrapper">
+                   {% for event in autocross %}
+                   <div class="swiper-slide">
+                     <a href="{% url 'event' event.id %}">
+                       <div class="card medium">
+                         <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
+                         <div class="card-infos">
+                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.start_date|date:"d/m/Y"}}</div>
+                           <h2 class="card-title">{{event.name}}</h2>
+                         </div>
+                       </div>
+                     </a>
+                     
+                   </div>
+                   {% endfor %}
+                   
+                 
+                 </div>
+               </div>
+               {% endif %}
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <script src="{% static 'js/framework7.bundle.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+  </body>
+</html>

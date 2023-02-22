@@ -31,7 +31,9 @@
                 <div class="author-infos">
                     <img class="author-avatar" src="{% if competitor.photo %}{{competitor.photo.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                   <div class="author-name">{{competitor.name}}</div>
+                  {% if car %}
                   <div class="author-description">{{car}}</div>
+                  {% endif %}
                 </div>
                 <div class="count-container">
                   <div class="count-block">

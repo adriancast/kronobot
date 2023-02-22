@@ -47,12 +47,43 @@ def events(request, event_id: int = None):
 
 def competitors(request, competitor_id):
     competitor = CompetitorModel.objects.get(id=competitor_id)
+    total_events_driving = len(InscriptionModel.objects.filter(pilot=competitor))
+    total_events_codriving = len(InscriptionModel.objects.filter(copilot=competitor))
+    total_events = total_events_driving + total_events_codriving
+
+    last_competition_inscription = InscriptionModel.objects.filter(pilot=competitor).last()
+    car = None
+    if last_competition_inscription:
+        car = last_competition_inscription.car
     context={
         "competitor": competitor,
-        "total_events": 100,
-        "total_events_driving": 60,
-        "total_events_codriving": 40,
-        "car":"Peugeot 205 GTI"
+        "total_events": total_events,
+        "total_events_driving": total_events_driving,
+        "total_events_codriving": total_events_codriving,
+        "car": car,
 
     }
     return render(request, 'competitors.html', context)
+
+def historic(request, year: int = None):
+    filter_by_year = year if year is not None else datetime.today().year
+    today = datetime.today()
+    context = {
+        "rallyes": EventModel.objects.filter(
+            category=EventCategory.RALLY, start_date__year=filter_by_year
+        ).order_by("start_date"),
+        "pujades": EventModel.objects.filter(
+            category=EventCategory.HILL_CLIMB, start_date__year=filter_by_year
+        ).order_by("start_date"),
+        "karting": EventModel.objects.filter(
+            category=EventCategory.KARTING, start_date__year=filter_by_year
+        ).order_by("start_date"),
+        "autocross": EventModel.objects.filter(
+            category=EventCategory.AUTO_CROSS, start_date__year=filter_by_year
+        ).order_by("start_date"),
+        "historic": sorted(
+            EventModel.objects.values_list("start_date__year", flat=True).distinct(), reverse=True
+        ),
+        "year": year,
+    }
+    return render(request, "historic.html", context)

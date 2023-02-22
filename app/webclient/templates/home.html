@@ -200,11 +200,6 @@
              {% endif %}
 
 
-
-
-
-
-
                {% if karting %}
                <div class="block">
               
@@ -276,7 +271,7 @@
                  <div class="swiper-wrapper">
                    {% for competitor in competitors %}
                    <div class="swiper-slide">
-                     <a href="#">
+                     <a href="{% url 'competitors' competitor.id %}">
                        <div class="card medium">
                          <img class="card-image" src="{% if competitor.photo %}{{competitor.photo.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                          <div class="card-infos">

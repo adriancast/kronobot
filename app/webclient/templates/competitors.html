@@ -31,19 +31,19 @@
                 <div class="author-infos">
                     <img class="author-avatar" src="{% if competitor.photo %}{{competitor.photo.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                   <div class="author-name">{{competitor.name}}</div>
-                  <div class="author-description">{{competitor.car}}Mini cooper</div>
+                  <div class="author-description">{{car}}</div>
                 </div>
                 <div class="count-container">
                   <div class="count-block">
-                    <div class="count-number">{{competitor.total_events}}100</div>
+                    <div class="count-number">{{total_events}}</div>
                     <div class="count-label">Eventos</div>
                   </div>
                   <div class="count-block">
-                    <div class="count-number">{{competitor.total_events_driving}}60</div>
+                    <div class="count-number">{{total_events_driving}}</div>
                     <div class="count-label">Piloto</div>
                   </div>
                   <div class="count-block">
-                    <div class="count-number">{{competitor.total_events_codriving}}40</div>
+                    <div class="count-number">{{total_events_codriving}}</div>
                     <div class="count-label">Copiloto</div>
                   </div>
                 </div>

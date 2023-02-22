@@ -46,9 +46,9 @@ def events(request, event_id: int = None):
     return render(request, 'events.html', context)
 
 def competitors(request, competitor_id):
-    competitors = CompetitorModel.objects.get(id=competitor_id)
+    competitor = CompetitorModel.objects.get(id=competitor_id)
     context={
-        "competitor": competitors,
+        "competitor": competitor,
         "total_events": 100,
         "total_events_driving": 60,
         "total_events_codriving": 40,

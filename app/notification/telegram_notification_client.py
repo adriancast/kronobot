@@ -1,5 +1,6 @@
 from typing import Optional
 import telegram as _telegram
+import asyncio
 
 
 class TelegramNotificationClient:
@@ -50,11 +51,15 @@ class TelegramNotificationClient:
             )
 
         if image_url:
-            self.__bot.send_photo(
-                chat_id=self.__chat_id,
-                photo=open(image_url, "rb"),
-                caption=text,
-                parse_mode="markdown",
+            asyncio.run(
+                self.__bot.send_photo(
+                    chat_id=self.__chat_id,
+                    photo=open(image_url, "rb"),
+                    caption=text,
+                    parse_mode="markdown",
+                )
             )
         else:
-            self.__bot.send_message(chat_id=self.__chat_id, text=text, parse_mode="markdown")
+            asyncio.run(
+                self.__bot.send_message(chat_id=self.__chat_id, text=text, parse_mode="markdown")
+            )

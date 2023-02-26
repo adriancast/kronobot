@@ -50,7 +50,7 @@ class Command(BaseCommand):
             start_date__year=today.year, start_date__month=today.month, provider_name=EventProvider.KRONOLIVE
         ).order_by("start_date")
         if sync == "all":
-            events_to_sync = EventModel.objects.all().order_by("start_date")
+            events_to_sync = EventModel.objects.all(provider_name=EventProvider.KRONOLIVE).order_by("start_date")
         notify_telegram = notify == "telegram"
         for event in events_to_sync:
             self.__sync_event_times(event=event, notify_telegram=notify_telegram)

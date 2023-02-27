@@ -1,30 +1,6 @@
+{% extends 'base.html' %}
 {% load static %}
-
-
-
-<!DOCTYPE html>
-<html>
-  <head>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0J52K32FHH"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-    
-        gtag('config', 'G-0J52K32FHH');
-        </script>
-        
-    <!-- Required meta tags-->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Kronobot</title>
-    <link rel="stylesheet" href="{% static 'css/framework7.bundle.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/framework7-icons.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  </head>
-  <body class="color-theme-pink">
+{% block content %}
     <div id="app">
       <div class="views tabs" style="max-width: 1000px; margin: auto; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
         <div class="page single single-1 no-navbar" data-name="single">
@@ -73,7 +49,6 @@
 
       </div>
     </div>
-    <script src="{% static 'js/framework7.bundle.min.js' %}"></script>
-    <script src="{% static 'js/app.js' %}"></script>
-  </body>
-</html>
+    {% endblock %}
+
+    {% block 'body-extra-class' %}color-theme-pink{% endblock %}

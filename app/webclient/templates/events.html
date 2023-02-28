@@ -1,30 +1,6 @@
+{% extends 'base.html' %}
 {% load static %}
-
-
-
-<!DOCTYPE html>
-<html>
-  <head>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0J52K32FHH"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-    
-        gtag('config', 'G-0J52K32FHH');
-        </script>
-        
-    <!-- Required meta tags-->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Kronobot</title>
-    <link rel="stylesheet" href="{% static 'css/framework7.bundle.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/framework7-icons.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  </head>
-  <body class="color-theme-pink">
+{% block content %}
     <div id="app">
       <div class="views tabs" style="max-width: 1000px; margin: auto; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
         <div class="page single single-1 no-navbar" data-name="single">
@@ -35,37 +11,37 @@
               <h2>{{event.description}}</h2>
                 </div>
                  <!--  <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12259.721753509453!2d2.7865992314547796!3d39.80855212104505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1297dd135289fc0d%3A0xc054c259ed38a25d!2sPuig%20Major!5e0!3m2!1ses!2ses!4v1676989693915!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" frameborder="0"></iframe> -->
-                <div class="block">
+                 
+                 <div class="block">
+                  {% if inscriptions %}
                   <div class="title-medium-container">
                     <h2>Participantes</h2>
                   </div>
-            
+                  
                   <div class="list media-list comment-list no-hairlines">
                     <ul>
                       {% for inscription in inscriptions %}
                       <li>
-                        <a href="#" class="item item-content">
+                        <div class="item item-content">
                           <div class="item-media"><img src="{% if inscription.pilot.photo %}{{inscription.pilot.photo.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="" style="height: 55px;"></div>
                           <div class="item-inner">
-                            <div class="item-title-row">
+                            <a href="{% url 'competitors' inscription.pilot.id %}" class="item-title-row">
                               <div class="item-title">{{inscription.pilot.name}}</div>
-                            </div>
+                            </a>
                             {% if inscription.copilot %}
-                            <div class="item-title-row">
+                            <a href="{% url 'competitors' inscription.copilot.id %}" class="item-title-row">
                               <div class="item-title">{{inscription.copilot.name}}</div>
-                            </div>
+                            </a>
                             {% endif %}
 
                             <div class="item-text">{{inscription.dorsal}} - {{inscription.car}}</div>
                           </div>
-                        </a>
+                        </div>
                       </li>
                     {% endfor %}
                     </ul>
                   </div>
-            
-  
-                  
+                  {% endif %}  
                 </div>
         
          </div>
@@ -73,7 +49,6 @@
 
       </div>
     </div>
-    <script src="{% static 'js/framework7.bundle.min.js' %}"></script>
-    <script src="{% static 'js/app.js' %}"></script>
-  </body>
-</html>
+{% endblock %}
+
+{% block 'body-extra-class' %}color-theme-pink{% endblock %}

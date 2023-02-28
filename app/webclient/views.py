@@ -47,9 +47,15 @@ def events(request, event_id: int = None):
 
 def competitors(request, competitor_id):
     competitor = CompetitorModel.objects.get(id=competitor_id)
-    total_events_driving = len(InscriptionModel.objects.filter(pilot=competitor))
-    total_events_codriving = len(InscriptionModel.objects.filter(copilot=competitor))
+    inscriptions_driving = InscriptionModel.objects.filter(pilot=competitor)
+    total_events_driving = len(inscriptions_driving)
+    inscriptions_codriving = InscriptionModel.objects.filter(copilot=competitor)
+    total_events_codriving = len(inscriptions_codriving)
     total_events = total_events_driving + total_events_codriving
+
+    comptetitor_events = [inscription.event for inscription in  inscriptions_driving]
+    comptetitor_events += [inscription.event for inscription in  inscriptions_codriving]
+    comptetitor_events = list(set(comptetitor_events))
 
     last_competition_inscription = InscriptionModel.objects.filter(pilot=competitor).last()
     car = None
@@ -61,6 +67,7 @@ def competitors(request, competitor_id):
         "total_events_driving": total_events_driving,
         "total_events_codriving": total_events_codriving,
         "car": car,
+        "events": comptetitor_events,
 
     }
     return render(request, 'competitors.html', context)

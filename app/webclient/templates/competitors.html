@@ -1,63 +1,67 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-  <head>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0J52K32FHH"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-    
-        gtag('config', 'G-0J52K32FHH');
-        </script>
-        
-    <!-- Required meta tags-->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Kronobot</title>
-    <link rel="stylesheet" href="{% static 'css/framework7.bundle.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/framework7-icons.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  </head>
-  <body class="color-theme-pink">
-    <div id="app">
-      <div class="views tabs">
-        <div class="page author no-navbar" data-name="author">
-            <div class="page-content">
-              <div class="oval"></div>
-              <div class="block">
-                <div class="author-infos">
-                    <img class="author-avatar" src="{% if competitor.photo %}{{competitor.photo.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
-                  <div class="author-name">{{competitor.name}}</div>
-                  {% if car %}
-                  <div class="author-description">{{car}}</div>
-                  {% endif %}
-                </div>
-                <div class="count-container">
-                  <div class="count-block">
-                    <div class="count-number">{{total_events}}</div>
-                    <div class="count-label">Eventos</div>
-                  </div>
-                  <div class="count-block">
-                    <div class="count-number">{{total_events_driving}}</div>
-                    <div class="count-label">Piloto</div>
-                  </div>
-                  <div class="count-block">
-                    <div class="count-number">{{total_events_codriving}}</div>
-                    <div class="count-label">Copiloto</div>
-                  </div>
-                </div>
-              
-            
-              </div>
+{% block content %}
+<div id="app">
+<div class="views tabs">
+  <div class="page author no-navbar" data-name="author">
+      <div class="page-content">
+        <div class="oval"></div>
+        <div class="block">
+          <div class="author-infos">
+              <img class="author-avatar" src="{% if competitor.photo %}{{competitor.photo.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
+            <div class="author-name">{{competitor.name}}</div>
+            {% if car %}
+            <div class="author-description">{{car}}</div>
+            {% endif %}
+          </div>
+          <div class="count-container">
+            <div class="count-block">
+              <div class="count-number">{{total_events}}</div>
+              <div class="count-label">Eventos</div>
+            </div>
+            <div class="count-block">
+              <div class="count-number">{{total_events_driving}}</div>
+              <div class="count-label">Piloto</div>
+            </div>
+            <div class="count-block">
+              <div class="count-number">{{total_events_codriving}}</div>
+              <div class="count-label">Copiloto</div>
             </div>
           </div>
 
+          {% if events %}
+          <br></br>
+          <h1>Últimos eventos de {{competitor.name}}</h1>
+          <br></br>
+          <div class="page-content">
+            <div class="block">
+              <ul class="list media-list post-list">
+                {% for event in events %}
+                <li>
+                  <a href="{% url 'event' event.id %}">
+                    <div class="item-content">
+                      <div class="item-media"><img src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt=""></div>
+                      <div class="item-inner">
+                        <div class="item-subtitle">{{event.category}}</div>
+                        <div class="item-title">{{event.name}}</div>
+                        <div class="item-subtitle bottom-subtitle"><i class="f7-icons">clock</i></i>{{event.start_date}}</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                 {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+
+
+        </div>
       </div>
     </div>
-    <script src="{% static 'js/framework7.bundle.min.js' %}"></script>
-    <script src="{% static 'js/app.js' %}"></script>
-  </body>
-</html>
+
+</div>
+</div>
+{% endblock %}
+
+{% block 'body-extra-class' %}color-theme-pink{% endblock %}

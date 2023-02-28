@@ -141,9 +141,10 @@ function activeCardTouch() {
     $$(this).removeClass('card-scale');
   });
 
-  $$('.swiper-slide a').on('click', function(e){
+  $$('a').on('click', function(e){
     window.location.href = $$(this).attr('href');
   });
+  
 }
 
 // Load the fonction on app init

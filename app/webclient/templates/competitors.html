@@ -28,8 +28,34 @@
               <div class="count-label">Copiloto</div>
             </div>
           </div>
-        
-      
+
+          {% if events %}
+          <br></br>
+          <h1>Últimos eventos de {{competitor.name}}</h1>
+          <br></br>
+          <div class="page-content">
+            <div class="block">
+              <ul class="list media-list post-list">
+                {% for event in events %}
+                <li>
+                  <a href="{% url 'event' event.id %}">
+                    <div class="item-content">
+                      <div class="item-media"><img src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt=""></div>
+                      <div class="item-inner">
+                        <div class="item-subtitle">{{event.category}}</div>
+                        <div class="item-title">{{event.name}}</div>
+                        <div class="item-subtitle bottom-subtitle"><i class="f7-icons">clock</i></i>{{event.start_date}}</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                 {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+
+
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from core.models import EventModel, EventCategory, InscriptionModel
 from core.models import CompetitorModel
-from datetime import datetime
+from datetime import datetime, date
 
 
 def showcase(request, year: int = None):
@@ -28,6 +28,7 @@ def showcase(request, year: int = None):
         "historic": sorted(
             EventModel.objects.values_list("start_date__year", flat=True).distinct(), reverse=True
         ),
+        "now": date.today(),
     }
     return render(request, "home.html", context)
     

@@ -43,6 +43,7 @@ ALLOWED_HOSTS += ['web']
 # Application definition
 
 INSTALLED_APPS = [
+    "ckeditor",
     "unfold",
     "unfold.contrib.filters",
     "unfold.contrib.forms",

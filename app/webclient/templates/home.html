@@ -116,6 +116,7 @@
                   <div class="title-with-link">
                     <h1>Próximos eventos</h1>
                     <i class="f7-icons">calendar</i>
+                    
                   </div>
                 </div>
               </div>
@@ -128,11 +129,23 @@
                       <div class="card">
                         <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                         <div class="card-infos">
-                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.start_date|date:"d/m/Y"}}</div>
+                          <div class="card-date">
+                            <i class="f7-icons">calendar</i>{{event.start_date|date:"d/m/Y"}}</div>
                           <h2 class="card-title">{{event.name}}</h2>
+                          {% if event.is_live %}
+                          
+                          <span style= "color: #ffffff;"onclick="window.location.href='https://t.me/KronobotIB'" class="tab-link">
+                            <i class="f7-icons">antenna_radiowaves_left_right</i>
+                            <span class="tabbar-label"><input type="button" style="border-radius: 35px; border-width: 3px ; border-color: #c519e4; "value="En directo" onclick="window.location.href='https://t.me/KronobotIB'"></span>
+
+
+                          </span> 
+                          {% endif %}
+                        
                         </div>
                       </div>
                     </a>
+                    
                   </div>
                   {% endfor %}
                   

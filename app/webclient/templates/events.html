@@ -3,10 +3,20 @@
 {% block content %}
     <div id="app">
       <div class="views tabs" style="max-width: 1000px; margin: auto; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+        {% if event.is_live %}
+        <div class="toolbar tabbar tabbar-labels toolbar-bottom">
+          <div class="toolbar-inner">
+            <span style="color: #c519e4" onclick="window.location.href='https://t.me/KronobotIB'" class="tab-link">
+              <i class="f7-icons">antenna_radiowaves_left_right</i>
+              <span class="tabbar-label">En directo</span>
+            </span>
+          </div>
+        </div>
+        {% endif %}
         <div class="page single single-1 no-navbar" data-name="single">
           <div class="page-content">
-            <img class="cover-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
-            <div class="block article">
+            <img class="cover-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="" >
+            <div class="block article">            
               <h1>{{event.name}}</h1>
               {{event.description | safe}}
                 </div>

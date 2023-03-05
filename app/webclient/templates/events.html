@@ -3,12 +3,22 @@
 {% block content %}
     <div id="app">
       <div class="views tabs" style="max-width: 1000px; margin: auto; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+        {% if event.is_live %}
+        <div class="toolbar tabbar tabbar-labels toolbar-bottom">
+          <div class="toolbar-inner">
+            <span style="color: #c519e4" onclick="window.location.href='https://t.me/KronobotIB'" class="tab-link">
+              <i class="f7-icons">antenna_radiowaves_left_right</i>
+              <span class="tabbar-label">En directo</span>
+            </span>
+          </div>
+        </div>
+        {% endif %}
         <div class="page single single-1 no-navbar" data-name="single">
           <div class="page-content">
-            <img class="cover-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
-            <div class="block article">
+            <img class="cover-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="" >
+            <div class="block article">            
               <h1>{{event.name}}</h1>
-              <h2>{{event.description}}</h2>
+              {{event.description | safe}}
                 </div>
                  <!--  <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12259.721753509453!2d2.7865992314547796!3d39.80855212104505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1297dd135289fc0d%3A0xc054c259ed38a25d!2sPuig%20Major!5e0!3m2!1ses!2ses!4v1676989693915!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" frameborder="0"></iframe> -->
                  

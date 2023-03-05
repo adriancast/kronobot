@@ -1,5 +1,6 @@
 from django.db import models
-
+from datetime import date
+from ckeditor.fields import RichTextField 
 
 class EventCategory(models.TextChoices):
     RALLY = "RALLY"
@@ -18,6 +19,7 @@ class EventModel(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     picture = models.ImageField(upload_to="events", blank=True, null=True)
+    description = RichTextField(blank=True)
     category = models.CharField(
         max_length=16,
         choices=EventCategory.choices,
@@ -28,6 +30,10 @@ class EventModel(models.Model):
         default=EventProvider.KRONOBOT
     )
     provider_data = models.JSONField(default=dict, blank=True)
+
+    def is_live(self):
+        return self.start_date <= date.today() <= self.end_date
+
 
     def __str__(self) -> str:
         return self.name

@@ -1,105 +1,19 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-  <head>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0J52K32FHH"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-    
-        gtag('config', 'G-0J52K32FHH');
-        </script>
-        
-    <!-- Required meta tags-->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Kronobot</title>
-    <link rel="stylesheet" href="{% static 'css/framework7.bundle.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/framework7-icons.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  </head>
-  <body class="color-theme-pink">
+{% block content %}
     <div id="app">
       <div class="views tabs">
         {% if is_live %}
         <!-- Tabbar -->
         <div class="toolbar tabbar tabbar-labels toolbar-bottom">
           <div class="toolbar-inner">
-            {% comment %}
-            <a href="#view-categories" class="tab-link">
-              <i class="f7-icons">square_grid_2x2_fill</i>
-              <span class="tabbar-label">Histórico</span>
-            </a>
-            {% endcomment %}
-            {% comment %}
-            <a href="#view-discover" class="tab-link tab-link-active">
-              <i class="f7-icons">house_fill</i>
-              <span class="tabbar-label">Inicio</span>
-            </a>
-            {% endcomment %}
-            <span style="color: #9e9e9e;" onclick="window.location.href='https://t.me/KronobotIB'" class="tab-link">
+            <span style="color: #c519e4;" onclick="window.location.href='https://t.me/KronobotIB'" class="tab-link">
               <i class="f7-icons">antenna_radiowaves_left_right</i>
               <span class="tabbar-label">En directo</span>
             </span>
-            {% comment %}
-            <a href="#view-search" class="tab-link">
-              <i class="f7-icons">search</i>
-              <span class="tabbar-label">Search</span>
-            </a>
-            {% endcomment %}
           </div>
         </div>
         {% endif %}
-
-        <!-- Categories View -->
-        <div id="view-categories" class="view tab">
-          <div data-name="categories" class="page no-navbar">
-            <!-- Scrollable page content -->
-            <div class="page-content">
-              <div class="block">
-                <div class="title-container">
-                  <h1>Histórico</h1>
-                </div>
-                <div class="categories-container">
-                  <a href="/category/">
-                    <div class="category card" style="background-color: rgba(252, 186, 47, 1); box-shadow: 0px 15px 20px -10px rgba(252, 186, 47, 0.5);">
-                      <h2>2022</h2>
-                    </div>
-                  </a>
-                  <a href="/category/">
-                    <div class="category card" style="background-color: rgba(128, 213, 250, 1); box-shadow: 0px 15px 20px -10px rgba(128, 213, 250, 0.5);">
-                      <h2>2021</h2>
-                    </div>
-                  </a>
-                  <a href="/category/">
-                    <div class="category card" style="background-color: rgba(231, 0, 70, 1); box-shadow: 0px 15px 20px -10px rgba(231, 0, 70, 0.5);">
-                      <h2>2020</h2>
-                    </div>
-                  </a>
-                  <a href="/category/">
-                    <div class="category card" style="background-color: rgba(37, 57, 155, 1); box-shadow: 0px 15px 20px -10px rgba(37, 57, 155, 0.5);">
-                      <h2>2019</h2>
-                    </div>
-                  </a>
-                  <a href="/category/">
-                    <div class="category card" style="background-color: rgba(37, 227, 154, 1); box-shadow: 0px 15px 20px -10px rgba(37, 227, 154, 0.5);">
-                      <h2>2018</h2>
-                    </div>
-                  </a>
-                  <a href="/category/">
-                    <div class="category card" style="background-color: rgba(255, 128, 169, 1); box-shadow: 0px 15px 20px -10px rgba(255, 128, 169, 0.5);">
-                      <h2>2017</h2>
-                    </div>
-                  </a>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-        </div>
         <!-- Inicio View -->
         <div id="view-discover" class="view tab tab-active">
           <div data-name="discover" class="page no-navbar">
@@ -116,6 +30,7 @@
                   <div class="title-with-link">
                     <h1>Próximos eventos</h1>
                     <i class="f7-icons">calendar</i>
+                    
                   </div>
                 </div>
               </div>
@@ -128,11 +43,21 @@
                       <div class="card">
                         <img class="card-image" src="{% if event.picture %}{{event.picture.url}}{% else %}{% static 'img/gradient-bg.jpeg' %}{% endif %}" alt="">
                         <div class="card-infos">
-                          <div class="card-date"><i class="f7-icons">calendar</i>{{event.start_date|date:"d/m/Y"}}</div>
+                          <div class="card-date">
+                            <i class="f7-icons">calendar</i>{{event.start_date|date:"d/m/Y"}}</div>
                           <h2 class="card-title">{{event.name}}</h2>
+                          {% if event.is_live %}
+                          
+                          <span style= "color: #ffffff;"onclick="window.location.href='https://t.me/KronobotIB'" class="tab-link">
+                            <i class="f7-icons">antenna_radiowaves_left_right</i>
+                            <span class="tabbar-label"><input type="button" style="border-radius: 35px; border-width: 3px ; border-color: #c519e4; "value="En directo" onclick="window.location.href='https://t.me/KronobotIB'"></span>
+                            </span> 
+                          {% endif %}
+                        
                         </div>
                       </div>
                     </a>
+                    
                   </div>
                   {% endfor %}
                   
@@ -318,146 +243,9 @@
             </div>
           </div>
         </div>
-        <!-- Search View -->
-        <div id="view-search" class="view tab">
-          <div data-name="search" class="page no-navbar">
-            <div class="page-content page-search">
-              <div class="searchbar-backdrop"></div>
-              <div class="block searchbar-container">
-                <div class="title-container">
-                  <h1>Search</h1>
-                </div>
-                <form class="searchbar">
-                  <div class="searchbar-inner">
-                    <div class="searchbar-input-wrap">
-                      <input type="search" placeholder="Search">
-                      <i class="searchbar-icon"></i>
-                      <span class="input-clear-button"></span>
-                    </div>
-                    <span class="searchbar-disable-button">Cancel</span>
-                  </div>
-                </form>
-              </div>
-              <div class="block search-container">
-                <div class="searchbar-hide-on-search">
-                  <h2>Popular Categories</h2>
-                  <ul class="popular-tags">
-                    <li><a href="#" class="link"><span>Politics</span><i class="f7-icons">chevron_right</i></a></li>
-                    <li><a href="#" class="link"><span>Sports</span><i class="f7-icons">chevron_right</i></a></li>
-                    <li><a href="#" class="link"><span>Fashion</span><i class="f7-icons">chevron_right</i></a></li>
-                    <li><a href="#" class="link"><span>Animals</span><i class="f7-icons">chevron_right</i></a></li>
-                    <li><a href="#" class="link"><span>Travel</span><i class="f7-icons">chevron_right</i></a></li>
-                    <li><a href="#" class="link"><span>Movies</span><i class="f7-icons">chevron_right</i></a></li>
-                  </ul>
-                  <h2>Popular Tags</h2>
-                  <div class="list no-hairlines trending-search">
-                    <ul>
-                      <li class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title"><a href="#" class="link">Ronaldo</a></div>
-                        </div>
-                      </li>
-                      <li class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title"><a href="#" class="link">Lil Wayne</a></div>
-                        </div>
-                      </li>
-                      <li class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title"><a href="#" class="link">Football</a></div>
-                        </div>
-                      </li>
-                      <li class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title"><a href="#" class="link">Lebron James</a></div>
-                        </div>
-                      </li>
-                      <li class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title"><a href="#" class="link">NBA</a></div>
-                        </div>
-                      </li>
-                      <li class="item-content">
-                        <div class="item-inner">
-                          <div class="item-title"><a href="#" class="link">US Elections</a></div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="preloader search-preloader"></div>
-                <div class="search-results">
-                  <ul class="list media-list post-list">
-                    <li>
-                      <a href="/single/">
-                        <div class="item-content">
-                          <div class="item-media"><img src="{% static 'img/thumb-11.jpg' %}" alt=""></div>
-                          <div class="item-inner">
-                            <div class="item-subtitle">Fashion</div>
-                            <div class="item-title">The 6th Edition of the Body Painting Contest</div>
-                            <div class="item-subtitle bottom-subtitle"><img src="{% static 'img/authors/author-7.jpg' %}" alt="">Elena Anka</div>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/single/">
-                        <div class="item-content">
-                          <div class="item-media"><img src="{% static 'img/thumb-12.jpg' %}" alt=""></div>
-                          <div class="item-inner">
-                            <div class="item-subtitle">Photography</div>
-                            <div class="item-title">20 Photography Tips for Taking Pictures</div>
-                            <div class="item-subtitle bottom-subtitle"><img src="{% static 'img/authors/author-3.jpg' %}" alt="">Jess Roxana</div>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/single/">
-                        <div class="item-content">
-                          <div class="item-media"><img src="{% static 'img/thumb-13.jpg' %}" alt=""></div>
-                          <div class="item-inner">
-                            <div class="item-subtitle">Beatles</div>
-                            <div class="item-title">Tottenham: NFL Turf Is in Place!</div>
-                            <div class="item-subtitle bottom-subtitle"><img src="{% static 'img/authors/author-1.jpg' %}" alt="">Camille Aline</div>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/single/">
-                        <div class="item-content">
-                          <div class="item-media"><img src="{% static 'img/thumb-31.jpg' %}" alt=""></div>
-                          <div class="item-inner">
-                            <div class="item-subtitle">Fashion</div>
-                            <div class="item-title">The Crocodile, Man's Best Friend?</div>
-                            <div class="item-subtitle bottom-subtitle"><img src="{% static 'img/authors/author-7.jpg' %}" alt="">Elena Anka</div>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/single/">
-                        <div class="item-content">
-                          <div class="item-media"><img src="{% static 'img/thumb-32.jpg' %}" alt=""></div>
-                          <div class="item-inner">
-                            <div class="item-subtitle">Science</div>
-                            <div class="item-title">7 Accessories to Pack This Summer</div>
-                            <div class="item-subtitle bottom-subtitle"><img src="{% static 'img/authors/author-3.jpg' %}" alt="">Jess Roxana</div>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
+       </div>
     </div>
-    <script src="{% static 'js/framework7.bundle.min.js' %}"></script>
-    <script src="{% static 'js/app.js' %}"></script>
-  </body>
-</html>
+    {% endblock %}
+
+    {% block 'body-extra-class' %}color-theme-pink{% endblock %}
+    

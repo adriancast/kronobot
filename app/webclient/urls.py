@@ -6,9 +6,9 @@ from webclient.views import historic
 
 urlpatterns = [
     path("", showcase, name="index"),
-    path("/archive/<int:year>", historic, name="archive"),
-    path('/events/<int:event_id>',events,name="event"),
-    path('/competitors/<int:competitor_id>',competitors,name="competitors"),
+    path('archive/<int:year>',historic,name="archive"),
+    path('events/<int:event_id>',events,name="event"),
+    path('competitors/<int:competitor_id>',competitors,name="competitors"),
     
     
 ]

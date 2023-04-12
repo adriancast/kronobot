@@ -1,7 +1,9 @@
 # kronobot
 
 This repo contains all the code of the website from https://kronobot.com and the Telegram chatbot functionality
-![kronobot.com preview](https://user-images.githubusercontent.com/17761956/205233198-f570797d-6c01-4233-835f-d731f5c3b696.png)
+![Captura de pantalla 2023-03-10 a las 10 48 26](https://user-images.githubusercontent.com/107317822/224284191-27f31d16-5572-4ff4-9b47-6f4138a82dc2.png)
+![Captura de pantalla 2023-03-10 a las 10 49 02](https://user-images.githubusercontent.com/107317822/224284232-e7070637-d55e-4877-b6b8-36bdea99f123.png)
+![Captura de pantalla 2023-03-10 a las 10 49 42](https://user-images.githubusercontent.com/107317822/224284254-7ce5dc80-ec37-4164-a48a-ed8f1f947520.png)
 ![Chatbot notification preview](https://user-images.githubusercontent.com/17761956/205232535-8c0943aa-6998-491c-bf1e-2101eb464425.jpeg)
 ![Chatbot chatroom preview](https://user-images.githubusercontent.com/17761956/205232603-bb1b26e8-dbb5-4b14-ba6e-af2d3df02bc2.jpeg)
 

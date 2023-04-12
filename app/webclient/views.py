@@ -38,10 +38,6 @@ def events(request, event_id: int = None):
     event = EventModel.objects.get(id=event_id)
     context = {
         "event": event,
-        "event_description": (
-            """🕘 12:33
-            📍Puig major"""
-        ),
         "inscriptions": InscriptionModel.objects.filter(event=event),
     }
     return render(request, 'events.html', context)

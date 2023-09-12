@@ -1,7 +1,7 @@
 import logging
 import re
 import time
-from datetime import datetime
+import timedelta
 from typing import Optional
 
 import requests
@@ -45,9 +45,11 @@ class Command(BaseCommand):
         )
 
     def handle(self, sync: str, notify: bool, *args, **options):
-        today = datetime.now()
+        min_start_date_filter = datetime.now() - datetime.timedelta(days=30)
+        max_start_date_filter = datetime.now() + datetime.timedelta(days=30)
         events_to_sync = EventModel.objects.filter(
-            start_date__year=today.year, start_date__month=today.month, provider_name=EventProvider.KRONOLIVE
+            start_date__gte=min_start_date_filter, start_date__lte=max_start_date_filter,
+            provider_name=EventProvider.KRONOLIVE
         ).order_by("start_date")
         if sync == "all":
             events_to_sync = EventModel.objects.all().order_by("start_date")

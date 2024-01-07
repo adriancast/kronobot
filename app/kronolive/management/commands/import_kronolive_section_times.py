@@ -73,7 +73,7 @@ class Command(BaseCommand):
         for event_category in event_categories:
             kronolive_event_code = event.provider_data["times_url"].split("/")[-2]
             event_category_times_url = (
-                f"http://kronolive.es/tiempos.aspx?p={kronolive_event_code}&c={event_category}"
+                f"http://www.kronolive.es/tiempos.aspx?p={kronolive_event_code}&c={event_category}"
             )
             try:
                 response = requests.get(event_category_times_url, timeout=5)

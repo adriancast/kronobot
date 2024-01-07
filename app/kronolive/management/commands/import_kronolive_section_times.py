@@ -1,6 +1,8 @@
 import logging
 import re
 import time
+from datetime import datetime, timedelta
+
 import timedelta
 from typing import Optional
 
@@ -9,6 +11,7 @@ from bs4 import BeautifulSoup
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
+from django.db.models import Q
 from requests.exceptions import RequestException
 from telegram.error import RetryAfter
 
@@ -45,10 +48,12 @@ class Command(BaseCommand):
         )
 
     def handle(self, sync: str, notify: bool, *args, **options):
-        min_start_date_filter = datetime.now() - datetime.timedelta(days=30)
-        max_start_date_filter = datetime.now() + datetime.timedelta(days=30)
+        min_start_date_filter = datetime.now() - timedelta(days=30)
+        max_start_date_filter = datetime.now() + timedelta(days=30)
+
         events_to_sync = EventModel.objects.filter(
-            start_date__gte=min_start_date_filter, start_date__lte=max_start_date_filter,
+            Q(start_date__gte=min_start_date_filter, end_date__lte=max_start_date_filter) |
+            Q(start_date__lte=max_start_date_filter, end_date__gte=min_start_date_filter),
             provider_name=EventProvider.KRONOLIVE
         ).order_by("start_date")
         if sync == "all":

@@ -1,17 +1,16 @@
 import logging
 import re
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Optional
-
 import requests
 from bs4 import BeautifulSoup
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
+from django.db.models import Q
 from requests.exceptions import RequestException
 from telegram.error import RetryAfter
-
 from core.models import (
     EventModel,
     SectionModel,
@@ -45,9 +44,13 @@ class Command(BaseCommand):
         )
 
     def handle(self, sync: str, notify: bool, *args, **options):
-        today = datetime.now()
+        min_start_date_filter = datetime.now() - timedelta(days=30)
+        max_start_date_filter = datetime.now() + timedelta(days=30)
+
         events_to_sync = EventModel.objects.filter(
-            start_date__year=today.year, start_date__month=today.month, provider_name=EventProvider.KRONOLIVE
+            Q(start_date__gte=min_start_date_filter, end_date__lte=max_start_date_filter) |
+            Q(start_date__lte=max_start_date_filter, end_date__gte=min_start_date_filter),
+            provider_name=EventProvider.KRONOLIVE
         ).order_by("start_date")
         if sync == "all":
             events_to_sync = EventModel.objects.all().order_by("start_date")
@@ -71,7 +74,7 @@ class Command(BaseCommand):
         for event_category in event_categories:
             kronolive_event_code = event.provider_data["times_url"].split("/")[-2]
             event_category_times_url = (
-                f"http://kronolive.es/tiempos.aspx?p={kronolive_event_code}&c={event_category}"
+                f"http://www.kronolive.es/tiempos.aspx?p={kronolive_event_code}&c={event_category}"
             )
             try:
                 response = requests.get(event_category_times_url, timeout=5)

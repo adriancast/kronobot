@@ -1,11 +1,11 @@
 import logging
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import requests
 from bs4 import BeautifulSoup
 from django.core.management.base import BaseCommand
+from django.db.models import Q
 from requests import RequestException
-
 from core.models import EventModel, InscriptionModel, CompetitorModel, EventProvider
 
 
@@ -18,9 +18,12 @@ class Command(BaseCommand):
         )
 
     def handle(self, sync: str, *args, **options):
-        today = datetime.now()
+        min_start_date_filter = datetime.now() - timedelta(days=30)
+        max_start_date_filter = datetime.now() + timedelta(days=30)
         events_to_sync = EventModel.objects.filter(
-            start_date__year=today.year, start_date__month=today.month, provider_name=EventProvider.KRONOLIVE
+            Q(start_date__gte=min_start_date_filter, end_date__lte=max_start_date_filter) |
+            Q(start_date__lte=max_start_date_filter, end_date__gte=min_start_date_filter),
+            provider_name=EventProvider.KRONOLIVE
         ).order_by("start_date")
         if sync == "all":
             events_to_sync = EventModel.objects.all().order_by("start_date")

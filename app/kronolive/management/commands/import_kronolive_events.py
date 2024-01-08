@@ -27,7 +27,7 @@ class Command(BaseCommand):
             self.__sync_events_year(year)
 
     def __sync_events_year(self, year: int) -> None:
-        url = f"http://kronolive.es/default.aspx?a={year}"
+        url = f"http://www.kronolive.es/default.aspx?a={year}"
         try:
             response = requests.get(url, timeout=5)
         except RequestException as e:
@@ -59,8 +59,8 @@ class Command(BaseCommand):
 
             date = date_soup.text.strip()
             event_name = name_soup.text.strip()
-            kronolive_times_url = f"http://kronolive.es{kronolive_times_url}"
-            kronolive_inscribed_url = f"http://kronolive.es{kronolive_inscribed_url}"
+            kronolive_times_url = f"http://www.kronolive.es{kronolive_times_url}"
+            kronolive_inscribed_url = f"http://www.kronolive.es{kronolive_inscribed_url}"
             category = self.__decide_event_category(event_name)
             EventModel.objects.get_or_create(
                 name=event_name,

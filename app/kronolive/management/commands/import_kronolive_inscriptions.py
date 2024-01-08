@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 from django.core.management.base import BaseCommand
 from django.db.models import Q
 from requests import RequestException
-import timedelta
 from core.models import EventModel, InscriptionModel, CompetitorModel, EventProvider
 
 

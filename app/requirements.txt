@@ -12,4 +12,3 @@ python-telegram-bot==13.10
 django-unfold==0.4.5
 django-ckeditor==6.5.1
 django-ninja==0.21.0
-timedelta==2020.12.3

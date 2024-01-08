@@ -2,10 +2,7 @@ import logging
 import re
 import time
 from datetime import datetime, timedelta
-
-import timedelta
 from typing import Optional
-
 import requests
 from bs4 import BeautifulSoup
 from django.conf import settings
@@ -14,7 +11,6 @@ from django.db import transaction
 from django.db.models import Q
 from requests.exceptions import RequestException
 from telegram.error import RetryAfter
-
 from core.models import (
     EventModel,
     SectionModel,

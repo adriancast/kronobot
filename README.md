@@ -9,7 +9,7 @@ This repo contains all the code of the website from https://kronobot.com and the
 
 ### Development
 
-Uses the default Django development server.
+Uses the default Django development server. 
 
 1. Check that you have your .env.dev and .env.dev.db.  If for some reason these files are not generated, remember that you can find samples in the repository.
    ```sh
